@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beni Ne Kadar Tanıyosun ✨</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: #000;
+        font-family: "Poppins", Arial, sans-serif;
+        overflow-x: hidden;
+        color: #f5f5f5;
+    }
+
+    /* GOLD COLOR */
+    :root {
+        --gold: #d4af37;
+        --gold-soft: #e8c662;
+    }
+
+    /* Floating gold hearts */
+    .floating-heart {
+        position: fixed;
+        bottom: -50px;
+        font-size: 22px;
+        color: var(--gold);
+        animation: floatUp 6s linear infinite;
+        opacity: 0.8;
+        z-index: 0;
+    }
+
+    @keyframes floatUp {
+        0% { transform: translateY(0) scale(1); opacity: 0.9; }
+        100% { transform: translateY(-120vh) scale(1.6); opacity: 0; }
+    }
+
+    .container {
+        max-width: 850px;
+        margin: 40px auto;
+        background: #111;
+        padding: 40px;
+        border-radius: 16px;
+        box-shadow: 0 0 25px rgba(212,175,55,0.25);
+        position: relative;
+        z-index: 2;
+    }
+
+    h1 {
+        text-align: center;
+        color: var(--gold);
+        font-size: 34px;
+        margin-bottom: 25px;
+        letter-spacing: 1px;
+    }
+
+    .question {
+        border-bottom: 1px solid #333;
+        padding-bottom: 18px;
+        margin-bottom: 22px;
+    }
+
+    .question h3 {
+        margin-bottom: 12px;
+        color: var(--gold-soft);
+        font-size: 19px;
+    }
+
+    .options label {
+        display: block;
+        padding: 6px 0;
+        cursor: pointer;
+        color: #ddd;
+        transition: 0.25s;
+    }
+
+    .options label:hover {
+        color: var(--gold);
+        transform: translateX(4px);
+    }
+
+    textarea, input[type="text"] {
+        width: 100%;
+        padding: 12px;
+        background: #222;
+        border: 1px solid #444;
+        color: #fff;
+        border-radius: 8px;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 15px;
+        background: linear-gradient(90deg, #b9972c, #d4af37, #f2d675);
+        color: #000;
+        font-weight: bold;
+        font-size: 18px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        margin-top: 25px;
+        box-shadow: 0 0 15px rgba(212,175,55,0.5);
+        transition: 0.3s;
+    }
+
+    .btn:hover {
+        box-shadow: 0 0 25px rgba(212,175,55,0.8);
+        transform: scale(1.03);
+    }
+
+    #resultBox {
+        display: none;
+        text-align: center;
+        background: #1a1a1a;
+        padding: 25px;
+        border-radius: 12px;
+        margin-top: 25px;
+        box-shadow: 0 0 18px rgba(212,175,55,0.3);
+    }
+
+    #score {
+        font-size: 42px;
+        font-weight: bold;
+        color: var(--gold);
+        margin-bottom: 12px;
+    }
+
+    /* Gold burst hearts */
+    .burst-heart {
+        position: fixed;
+        color: var(--gold);
+        font-size: 30px;
+        animation: burst 2.5s ease-out forwards;
+        opacity: 0.9;
+        z-index: 99;
+    }
+
+    @keyframes burst {
+        0% { transform: scale(0.5) translateY(0); opacity: 1; }
+        100% { transform: scale(1.4) translateY(-160px); opacity: 0; }
+    }
+</style>
+</head>
+<body>
+
+<script>
+function createFloatingHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("floating-heart");
+    heart.innerHTML = "💛";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+}
+setInterval(createFloatingHeart, 1300);
+</script>
+
+<div class="container">
+    <h1>✨ TESTTT!!!! ✨</h1>
+
+    <form id="quizForm">
+
+        <!-- ALL 15 QUESTIONS (same as before, theme only changed) -->
+
+        <div class="question">
+            <h3>1. En sevdiğim tatlı hangisi?</h3>
+            <label><input type="radio" name="q1" value="Waffle"> Waffle</label>
+            <label><input type="radio" name="q1" value="Profiterol"> Profiterol</label>
+            <label><input type="radio" name="q1" value="Sufle"> Sufle</label>
+            <label><input type="radio" name="q1" value="Cheesecake"> Cheesecake</label>
+        </div>
+
+        <div class="question">
+            <h3>2. En sevdiğim içecek nedir?</h3>
+            <label><input type="radio" name="q2" value="Caramel Frappuccino"> Caramel Frappuccino</label>
+            <label><input type="radio" name="q2" value="Ice Latte"> Ice Latte</label>
+            <label><input type="radio" name="q2" value="Smoothie"> Çilekli Smoothie</label>
+            <label><input type="radio" name="q2" value="Soğuk Çay"> Soğuk Çay</label>
+        </div>
+
+        <div class="question">
+            <h3>3. En sevdiğim renk hangisi?</h3>
+            <label><input type="radio" name="q3" value="Siyah"> Siyah</label>
+            <label><input type="radio" name="q3" value="Bordo"> Bordo</label>
+            <label><input type="radio" name="q3" value="Mavi"> Koyu Mavi</label>
+            <label><input type="radio" name="q3" value="Gri"> Gri</label>
+        </div>
+
+        <div class="question">
+            <h3>4. En sevdiğim mevsim hangisi?</h3>
+            <label><input type="radio" name="q4" value="Yaz"> Yaz</label>
+            <label><input type="radio" name="q4" value="Kış"> Kış</label>
+            <label><input type="radio" name="q4" value="Sonbahar"> Sonbahar</label>
+            <label><input type="radio" name="q4" value="İlkbahar"> İlkbahar</label>
+        </div>
+
+        <div class="question">
+            <h3>5. En sevdiğim film/dizi türü?</h3>
+            <label><input type="radio" name="q5" value="Korku"> Korku</label>
+            <label><input type="radio" name="q5" value="Romantik"> Romantik</label>
+            <label><input type="radio" name="q5" value="Komedi"> Komedi</label>
+            <label><input type="radio" name="q5" value="Aksiyon"> Aksiyon</label>
+        </div>
+
+        <div class="question">
+            <h3>6. Sana ilk ne zaman yazdım?</h3>
+            <label><input type="radio" name="q6" value="7 Mayıs 2025"> 7 Mayıs 2025</label>
+            <label><input type="radio" name="q6" value="3 Mayıs 2025"> 3 Mayıs 2025</label>
+            <label><input type="radio" name="q6" value="10 Mayıs 2025"> 10 Mayıs 2025</label>
+            <label><input type="radio" name="q6" value="15 Nisan 2025"> 15 Nisan 2025</label>
+        </div>
+
+        <div class="question">
+            <h3>7. Ben acıkınca ne olur?</h3>
+            <label><input type="radio" name="q7" value="Hırçınlaşırım"> Hırçınlaşırım</label>
+            <label><input type="radio" name="q7" value="Sessizleşirim"> Sessizleşirim</label>
+            <label><input type="radio" name="q7" value="Koparım"> Dünya ile bağlantıyı keserim</label>
+            <label><input type="radio" name="q7" value="Hepsi"> Hepsi</label>
+        </div>
+
+        <div class="question">
+            <h3>8. Beni neden seviyorsun?</h3>
+            <textarea name="q8"></textarea>
+        </div>
+
+        <div class="question">
+            <h3>9. Gelecekteki en büyük hayalim nedir?</h3>
+            <label><input type="radio" name="q9" value="Araba almak"> Araba almak</label>
+            <label><input type="radio" name="q9" value="Ev almak"> Ev almak</label>
+            <label><input type="radio" name="q9" value="İş kurmak"> Kendi işimi kurmak</label>
+            <label><input type="radio" name="q9" value="Yurtdışı"> Yurtdışına taşınmak</label>
+        </div>
+
+        <div class="question">
+            <h3>10. Seni bana bağlayan şey ne?</h3>
+            <textarea name="q10"></textarea>
+        </div>
+
+        <div class="question">
+            <h3>11. İlk sana ne zaman gerçekten bağlandığımı düşündün?</h3>
+            <textarea name="q11"></textarea>
+        </div>
+
+        <div class="question">
+            <h3>12. Birlikte en çok ne yapmayı seviyoruz?</h3>
+            <label><input type="radio" name="q12" value="😉"> 😉</label>
+            <label><input type="radio" name="q12" value="Sohbet"> Sohbet etmek</label>
+            <label><input type="radio" name="q12" value="Gezmek"> Birlikte gezmek</label>
+            <label><input type="radio" name="q12" value="Film"> Film izlemek</label>
+        </div>
+
+        <div class="question">
+            <h3>13. Beni en çok ne zaman kıskandın?</h3>
+            <textarea name="q13"></textarea>
+        </div>
+
+        <div class="question">
+            <h3>14. Uğurlu sayım ne?</h3>
+            <label><input type="radio" name="q14" value="7"> 7</label>
+            <label><input type="radio" name="q14" value="3"> 3</label>
+            <label><input type="radio" name="q14" value="5"> 5</label>
+            <label><input type="radio" name="q14" value="9"> 9</label>
+        </div>
+
+        <div class="question">
+            <h3>15. Sevgili olduktan sonra birlikte yaptığımız ilk aktivite neydi?</h3>
+            <label><input type="radio" name="q15" value="Meteor izlemek"> Meteor izlemek</label>
+            <label><input type="radio" name="q15" value="Kurabiye yapmak"> Kurabiye yapmak</label>
+            <label><input type="radio" name="q15" value="Yürüyüş"> Dışarıda yürüyüş yapmak</label>
+            <label><input type="radio" name="q15" value="Film izlemek"> Film izlemek</label>
+        </div>
+
+        <button type="button" class="btn" onclick="finishQuiz()">Testi Bitir</button>
+    </form>
+
+    <div id="resultBox">
+        <div id="score"></div>
+        💛 SIKIYORSA YANLIŞ BİL 💛
+    </div>
+</div>
+
+<script>
+const correctAnswers = {
+    q1: "Waffle",
+    q2: "Caramel Frappuccino",
+    q3: "Siyah",
+    q4: "Yaz",
+    q5: "Korku",
+    q6: "7 Mayıs 2025",
+    q7: "Hırçınlaşırım",
+    q9: "Araba almak",
+    q12: "😉",
+    q14: "7",
+    q15: "Meteor izlemek"
+};
+
+function burstHearts() {
+    for (let i = 0; i < 45; i++) {
+        let h = document.createElement("div");
+        h.classList.add("burst-heart");
+        h.innerHTML = "💛";
+        h.style.left = Math.random() * 100 + "vw";
+        h.style.top = "60vh";
+        h.style.fontSize = (Math.random() * 25 + 25) + "px";
+        document.body.appendChild(h);
+        setTimeout(() => h.remove(), 2500);
+    }
+}
+
+function finishQuiz() {
+    let score = 0;
+    let total = Object.keys(correctAnswers).length;
+
+    for (let q in correctAnswers) {
+        let selected = document.querySelector(`input[name="${q}"]:checked`);
+        if (selected && selected.value === correctAnswers[q]) {
+            score++;
+        }
+    }
+
+    let percent = Math.round((score / total) * 100);
+    document.getElementById("score").innerText = percent + " / 100 ✨💛";
+
+    document.getElementById("resultBox").style.display = "block";
+
+    burstHearts();
+
+    window.scrollTo(0, document.body.scrollHeight);
+}
+</script>
+
+</body>
+</html>
